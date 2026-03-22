@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // replace the top of api.js
-const BASE_URL = "/api";  // Vite proxy handles routing to Django;
+const BASE_URL = import.meta.env.VITE_API_URL ?? "/api";  // Vite proxy handles routing to Django;
 
 const api = axios.create({
   baseURL: BASE_URL,
