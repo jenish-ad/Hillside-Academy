@@ -144,3 +144,6 @@ REST_FRAMEWORK = {
 # ── Security headers (safe for dev, essential for production) ──
 X_FRAME_OPTIONS          = 'DENY'
 SECURE_CONTENT_TYPE_NOSNIFF = True
+
+SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE', 'True') == 'True'
+CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE', 'True') == 'True'
