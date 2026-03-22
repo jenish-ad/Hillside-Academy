@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { submitContact, getContactInfo } from "../services/api";
 import SectionHeader from "../components/common/SectionHeader";
 import useTitle from "../hooks/useTitle";
-useTitle("Contact Us");
+;
 
 export default function Contact() {
+  useTitle("Contact Us")
   const [form, setForm]         = useState({ full_name: "", email: "", phone: "", subject: "", message: "" });
   const [status, setStatus]     = useState(null);
   const [loading, setLoading]   = useState(false);

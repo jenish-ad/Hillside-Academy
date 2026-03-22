@@ -1,6 +1,6 @@
 import SectionHeader from "../components/common/SectionHeader";
 import useTitle from "../hooks/useTitle";
-useTitle("Academics");
+
 
 const GRADES = [
   { level: "Early Childhood",  grades: "Nursery, LKG, UKG",
@@ -23,6 +23,7 @@ const ECAS = [
 ];
 
 export default function Academics() {
+  useTitle("Academics");
   return (
     <main className="bg-amber-50 min-h-screen">
 

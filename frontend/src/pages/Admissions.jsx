@@ -2,9 +2,10 @@ import { useState } from "react";
 import { submitEnquiry } from "../services/api";
 import SectionHeader from "../components/common/SectionHeader";
 import useTitle from "../hooks/useTitle";
-useTitle("Admissions");
+
 
 export default function Admissions() {
+  useTitle("Admissions");
   const [form, setForm]       = useState({ full_name: "", email: "", phone: "", message: "" });
   const [status, setStatus]   = useState(null);
   const [loading, setLoading] = useState(false);

@@ -1,7 +1,7 @@
 import SectionHeader from "../components/common/SectionHeader";
 import useTitle from "../hooks/useTitle";
 // inside component, first line:
-useTitle("About Us");
+
 
 const VALUES = [
   { title: "Excellence",
@@ -19,6 +19,7 @@ const VALUES = [
 ];
 
 export default function About() {
+  useTitle("About Us");
   return (
     <main className="bg-amber-50 min-h-screen">
 

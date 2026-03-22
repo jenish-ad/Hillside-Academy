@@ -3,9 +3,10 @@ import { getGalleryAlbums, getGalleryAlbum } from "../services/api";
 import { mediaUrl } from "../services/media";
 import SectionHeader from "../components/common/SectionHeader";
 import useTitle from "../hooks/useTitle";
-useTitle("Gallery");
+
 
 export default function Gallery() {
+  useTitle("Gallery");
   const [albums, setAlbums]           = useState([]);
   const [selected, setSelected]       = useState(null);
   const [albumData, setAlbumData]     = useState(null);
