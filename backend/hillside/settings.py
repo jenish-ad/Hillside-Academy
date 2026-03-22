@@ -105,15 +105,21 @@ CORS_ALLOWED_ORIGINS = os.getenv(
     'CORS_ALLOWED_ORIGINS',
     'http://localhost:5173, http://127.0.0.1:5173'
 ).split(',')
-CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', 'http://localhost:8000').split(',')
+CSRF_TRUSTED_ORIGINS = [
+    'https://hillside-academy-production.up.railway.app',
+    'http://hillside-academy-production.up.railway.app',
+    'https://hillside-academy-tan.vercel.app',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+]
 # Trust Railway's proxy
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
-
+SECURE_SSL_REDIRECT = False
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
-SESSION_COOKIE_SAMESITE = 'Lax'
-CSRF_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_HTTPONLY = False
+CSRF_USE_SESSIONS = False
 
 # DRF
 REST_FRAMEWORK = {
@@ -157,6 +163,3 @@ REST_FRAMEWORK = {
 # ── Security headers (safe for dev, essential for production) ──
 X_FRAME_OPTIONS          = 'DENY'
 SECURE_CONTENT_TYPE_NOSNIFF = True
-
-SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE', 'True') == 'True'
-CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE', 'True') == 'True'
