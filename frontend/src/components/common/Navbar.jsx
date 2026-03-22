@@ -6,7 +6,8 @@ export default function Navbar() {
 
   const linkBase =
     "px-3 py-1 rounded-lg text-sm font-semibold transition hover:bg-blue-50";
-  const linkActive = "text-blue-900 bg-blue-50";
+  // find this line and replace:
+const linkActive = "text-blue-900 bg-white";
   const linkInactive = "text-gray-700";
 
   return (
@@ -16,7 +17,7 @@ export default function Navbar() {
           {/* Logo + name (LOGO SIZE UNCHANGED) */}
           <div className="flex items-center gap-3">
             <div className="h-35 w-45 grid place-items-center overflow-hidden">
-              <img
+              <img loading="lazy"
                 src="/Untitled.png"
                 alt="Logo"
                 className="bg-yellow-500object-cover scale-110"
@@ -24,10 +25,10 @@ export default function Navbar() {
             </div>
 
             <div className="leading-none">
-              <p className="text-4xl font-extrabold text-white leading-tight">
+              <p className="text-4xl font-extrabold text-black leading-tight">
                 Hillside Academy
               </p>
-              <p className="text-s text-gray-600 leading-none">
+              <p className="text-s text-black 600 leading-none">
                 Birendranagar-7, Surkhet
               </p>
             </div>
@@ -35,13 +36,16 @@ export default function Navbar() {
 
           {/* Desktop links */}
           <div className="hidden md:flex gap-1">
-            {[
-              ["Home", "/"],
-              ["About", "/about"],
-              ["Academics", "/academics"],
-              ["Notice", "/notice"],
-              ["Contact", "/contact"],
-            ].map(([label, path]) => (
+            {// replace the links array in BOTH places (desktop + mobile)
+              [
+                ["Home",       "/"],
+                ["About",      "/about"],
+                ["Academics",  "/academics"],
+                ["Admissions", "/admissions"],
+                ["Gallery",    "/gallery"],
+                ["Notice",     "/notice"],
+                ["Contact",    "/contact"],
+              ].map(([label, path]) => (
               <NavLink
                 key={path}
                 to={path}
@@ -68,13 +72,16 @@ export default function Navbar() {
         {open && (
           <div className="md:hidden pb-3">
             <div className="rounded-2xl border border-blue-100 bg-white p-3 space-y-2">
-              {[
-                ["Home", "/"],
-                ["About", "/about"],
-                ["Academics", "/academics"],
-                ["Notice", "/notice"],
-                ["Contact", "/contact"],
-              ].map(([label, path]) => (
+              {// replace the links array in BOTH places (desktop + mobile)
+                [
+                  ["Home",       "/"],
+                  ["About",      "/about"],
+                  ["Academics",  "/academics"],
+                  ["Admissions", "/admissions"],
+                  ["Gallery",    "/gallery"],
+                  ["Notice",     "/notice"],
+                  ["Contact",    "/contact"],
+                ].map(([label, path]) => (
                 <NavLink
                   key={path}
                   to={path}

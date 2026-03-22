@@ -5,8 +5,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    # API endpoints
     path('api/core/', include('core.urls')),
     path('api/notices/', include('notices.urls')),
     path('api/academics/', include('academics.urls')),
@@ -16,4 +14,5 @@ urlpatterns = [
     path('api/downloads/', include('downloads.urls')),
     path('api/testimonials/', include('testimonials.urls')),
     path('api/contact/', include('contact.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
+  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

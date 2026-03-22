@@ -23,3 +23,10 @@ class AdmissionEnquiryAdmin(admin.ModelAdmin):
     readonly_fields = ['full_name', 'email', 'phone', 'program', 'message', 'submitted_at']
     ordering = ['-submitted_at']
     date_hierarchy = 'submitted_at'
+
+    def has_delete_permission(self, request, obj=None):
+        # only superuser can delete enquiries
+        return request.user.is_superuser
+
+    def has_add_permission(self, request):
+        return False   # nobody manually adds enquiries

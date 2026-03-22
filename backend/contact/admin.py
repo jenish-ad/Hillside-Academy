@@ -11,6 +11,12 @@ class ContactSubmissionAdmin(admin.ModelAdmin):
     ordering = ['-submitted_at']
     date_hierarchy = 'submitted_at'
 
+    def has_delete_permission(self, request, obj=None):
+        return request.user.is_superuser
+
+    def has_add_permission(self, request):
+        return False
+
 @admin.register(ContactInfo)
 class ContactInfoAdmin(admin.ModelAdmin):
     list_display = ['email', 'phone_primary', 'updated_at']

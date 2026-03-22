@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     # third party
     'rest_framework',
     'corsheaders',
+    'axes',
 
     # our apps
     'core',
@@ -37,10 +38,12 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'axes.middleware.AxesMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -106,3 +109,37 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 }
+# ── Whitenoise (serves static files efficiently) ──────────────
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# ── Django Axes (blocks brute force login attempts) ───────────
+AXES_FAILURE_LIMIT         = 10      # lock after 5 failed attempts
+AXES_COOLOFF_TIME          = 1      # lockout for 1 hour
+AXES_LOCKOUT_TEMPLATE      = None
+AXES_RESET_ON_SUCCESS      = True
+
+AUTHENTICATION_BACKENDS = [
+    'axes.backends.AxesStandaloneBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+# ── DRF throttling (rate limiting) ────────────────────────────
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/hour',    # anonymous users: 100 requests/hour
+        'user': '1000/hour',   # logged in users: 1000 requests/hour
+    },
+}
+
+# ── Security headers (safe for dev, essential for production) ──
+X_FRAME_OPTIONS          = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True

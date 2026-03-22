@@ -24,22 +24,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATS */}
-      <section className="bg-blue-900 text-white">
-        <div className="mx-auto max-w-7xl px-6 py-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {[
-            ["1200+", "Students"],
-            ["80+", "Teachers"],
-            ["25+", "Years of Excellence"],
-            ["100%", "Board Results"],
-          ].map(([value, label]) => (
-            <div key={label}>
-              <p className="text-3xl font-extrabold text-yellow-400">{value}</p>
-              <p className="mt-2 text-sm">{label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+
 
       {/* WHY US */}
       <section className="bg-white">
