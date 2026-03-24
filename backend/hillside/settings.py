@@ -130,7 +130,6 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
 }
 # ── Whitenoise (serves static files efficiently) ──────────────
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 WHITENOISE_AUTOREFRESH = True
 
 # ── Django Axes (blocks brute force login attempts) ───────────
@@ -175,4 +174,11 @@ CLOUDINARY_STORAGE = {
 }
 CLOUDINARY_URL = f"cloudinary://{os.getenv('CLOUDINARY_API_KEY')}:{os.getenv('CLOUDINARY_API_SECRET')}@{os.getenv('CLOUDINARY_CLOUD_NAME')}"
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
