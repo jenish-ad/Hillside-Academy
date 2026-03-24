@@ -88,7 +88,8 @@ export default function SchoolIntroAndPrincipal() {
         </div>
 
         {/* RIGHT — Principal message */}
-        <div className="bg-amber-50 rounded-3xl border border-yellow-200 overflow-hidden">
+        {/* RIGHT — Principal message */}
+        <div className="bg-amber-50 rounded-3xl border border-yellow-200 overflow-hidden order-first md:order-last">
 
           {/* Header strip */}
           <div className="bg-yellow-400 px-8 py-5 flex items-center gap-4">
